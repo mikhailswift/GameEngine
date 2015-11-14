@@ -9,7 +9,6 @@
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-
 namespace GameEngine
 {
     struct SDL_Deleter
@@ -74,7 +73,8 @@ int main(int argc, char **argv)
     {
         std::unique_ptr<GameEngine::Engine> engine = std::unique_ptr<GameEngine::Engine>(new GameEngine::Engine());
         engine->Start();
-        while (true) {
+        while (true)
+        {
             bool shouldContinue = engine->DoLoop();
             if (!shouldContinue)
                 break;
