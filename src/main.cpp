@@ -12,7 +12,7 @@ namespace GameEngine
 {
     void HandleError()
     {
-        printf("SHIT! %s", SDL_GetError());
+        printf("Error: %s", SDL_GetError());
     }
 
     struct SDL_Deleter
@@ -32,7 +32,7 @@ int main()
     }
 
     window = std::unique_ptr<SDL_Window, GameEngine::SDL_Deleter>
-            (SDL_CreateWindow("tits", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN));
+            (SDL_CreateWindow("Test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN));
     if (window == NULL)
     {
         GameEngine::HandleError();
