@@ -18,8 +18,12 @@ namespace GameEngine
         if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
             handleError();
         title = t;
-        window = std::unique_ptr<SDL_Window, SDL_Deleter>
-                (SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_HIDDEN));
+        window = std::unique_ptr<SDL_Window, SDL_Deleter>(SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_HIDDEN));
+    }
+
+    SDLGameWindow::~SDLGameWindow()
+    {
+        SDL_DestroyWindow(window.get());
     }
 
     void SDLGameWindow::handleError()

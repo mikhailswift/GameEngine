@@ -14,6 +14,7 @@ namespace GameEngine
     {
     public:
         Engine(GameWindow *window, Game::Game* game);
+        ~Engine();
         void start();
         void stop();
         bool doLoop();

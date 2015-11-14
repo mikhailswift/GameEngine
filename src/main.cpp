@@ -16,14 +16,6 @@ int main(int argc, char **argv)
         std::unique_ptr<Game::Game> game = std::unique_ptr<Game::Game>(new Game::Game());
         std::unique_ptr<GameEngine::Engine> engine = std::unique_ptr<GameEngine::Engine>(new GameEngine::Engine(window.get(), game.get()));
         engine->start();
-        while (true)
-        {
-            bool shouldContinue = engine->doLoop();
-            if (!shouldContinue)
-                break;
-        }
-
-        engine->stop();
         return EXIT_SUCCESS;
     }
     catch (const char *msg)

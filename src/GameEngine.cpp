@@ -12,6 +12,11 @@ namespace GameEngine
         game = g;
     }
 
+    Engine::~Engine()
+    {
+        SDL_Quit();
+    }
+
     void Engine::start()
     {
         window->start();
@@ -31,15 +36,15 @@ namespace GameEngine
 
     bool Engine::doLoop()
     {
-        /*SDL_Event *event;
-        while(SDL_PollEvent(event))
+        SDL_Event event;
+        while(SDL_PollEvent(&event))
         {
-            if (event-> type == SDL_QUIT)
+            if (event.type == SDL_QUIT)
                 return false;
-        }*/
+        }
 
         window->render(game);
-        SDL_Delay(5000);
-        return false;
+        SDL_Delay(2);
+        return true;
     }
 }

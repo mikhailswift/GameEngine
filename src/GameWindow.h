@@ -38,6 +38,7 @@ namespace GameEngine
     {
     public:
         SDLGameWindow(char* title, int width, int height);
+        ~SDLGameWindow();
         void render(Game::Game *game);
         void start();
         void stop();
