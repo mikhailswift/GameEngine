@@ -7,6 +7,7 @@
 
 namespace GameEngine
 {
+    GameWindow::~GameWindow() { delete title; }
     int GameWindow::getHeight() { return height; }
     int GameWindow::getWidth() { return width; }
     int GameWindow::getX() { return x; }
@@ -23,7 +24,6 @@ namespace GameEngine
 
     SDLGameWindow::~SDLGameWindow()
     {
-        SDL_DestroyWindow(window.get());
     }
 
     void SDLGameWindow::handleError()

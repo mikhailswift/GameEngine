@@ -17,13 +17,14 @@ namespace GameEngine
         int width, height, x, y;
         char* title;
     public:
+        virtual ~GameWindow();
         int getHeight();
         int getWidth();
         int getX();
         int getY();
         char* getTitle();
         // "rendering the game" may not make the most sense, but it's just a prototype for the moment
-        virtual void render(Game::Game *game) = 0;
+        virtual void render(Game::Game *game)=0;
         virtual void start() = 0;
         virtual void stop() = 0;
     };
