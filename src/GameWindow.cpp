@@ -7,7 +7,7 @@
 
 namespace GameEngine
 {
-    GameWindow::~GameWindow() { delete title; }
+    GameWindow::~GameWindow() {}
     int GameWindow::getHeight() { return height; }
     int GameWindow::getWidth() { return width; }
     int GameWindow::getX() { return x; }

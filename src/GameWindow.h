@@ -15,7 +15,7 @@ namespace GameEngine
     {
     protected:
         int width, height, x, y;
-        char* title;
+        char *title;
     public:
         virtual ~GameWindow();
         int getHeight();
