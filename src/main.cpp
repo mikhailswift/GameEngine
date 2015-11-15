@@ -7,7 +7,7 @@
 
 const uint16_t SCREEN_WIDTH = 640;
 const uint16_t SCREEN_HEIGHT = 480;
-const double_t FRAME_CAP = 5000L;
+const uint16_t FRAME_CAP = 5000;
 
 int32_t main(int argc, char **argv)
 {

@@ -14,9 +14,4 @@ namespace GameEngine
     {
         return SDL_GetTicks();
     }
-
-    engineTime_t GetDelta()
-    {
-        return 0;
-    }
 }

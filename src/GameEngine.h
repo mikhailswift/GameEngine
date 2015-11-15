@@ -13,7 +13,7 @@ namespace GameEngine
     class Engine
     {
     public:
-        Engine(GameWindow *window, Game::Game* game, double_t fpsCap);
+        Engine(GameWindow *window, Game::Game* game, uint16_t fpsCap);
         ~Engine();
         void start();
         void pause(bool unpause = false);

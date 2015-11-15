@@ -7,7 +7,7 @@
 
 namespace GameEngine
 {
-    Engine::Engine(GameWindow *window_, Game::Game *game_, double_t fpsCap_) : FrameTime(1.0/fpsCap_)
+    Engine::Engine(GameWindow *window_, Game::Game *game_, uint16_t fpsCap_) : FrameTime(1.0/(double_t)fpsCap_)
     {
         window = std::unique_ptr<GameWindow>(window_);
         game = std::unique_ptr<Game::Game>(game_);
@@ -50,6 +50,8 @@ namespace GameEngine
     void Engine::run()
     {
         auto lastTime = GameEngine::GetTime();
+        uint16_t fps = 0;
+        engineTime_t fpsTimer = 0;
         double_t unprocessedTime = 0;
         while (isRunning)
         {
@@ -58,6 +60,7 @@ namespace GameEngine
             auto passedTime = startTime - lastTime;
             lastTime = startTime;
             unprocessedTime += passedTime / (double_t)GameEngine::SECOND;
+            fpsTimer += passedTime;
             while (unprocessedTime > FrameTime)
             {
                 render = true;
@@ -67,9 +70,24 @@ namespace GameEngine
                     continue;
 
                 // update game
+
+                // if
+                if (fpsTimer >= GameEngine::SECOND)
+                {
+                    std::cout << fps << std::endl;
+                    fps = 0;
+                    fpsTimer = 0;
+                }
             }
             if (render)
+            {
+                fps++;
                 window->render(game.get());
+            }
+            else
+            {
+                SDL_Delay(1);
+            }
         }
     }
 
