@@ -3,22 +3,23 @@
 //
 
 #include "GameWindow.h"
-#include <string>
 
 namespace GameEngine
 {
     GameWindow::~GameWindow() {  }
-    int GameWindow::getHeight() { return height; }
-    int GameWindow::getWidth() { return width; }
-    int GameWindow::getX() { return x; }
-    int GameWindow::getY() { return y; }
+    uint16_t GameWindow::getHeight() { return height; }
+    uint16_t GameWindow::getWidth() { return width; }
+    uint16_t GameWindow::getX() { return x; }
+    uint16_t GameWindow::getY() { return y; }
     std::string GameWindow::getTitle() { return title; }
 
-    SDLGameWindow::SDLGameWindow(std::string t, int width, int height)
+    SDLGameWindow::SDLGameWindow(std::string title_, uint16_t width_, uint16_t height_)
     {
         if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
             handleError();
-        title = t;
+        title = title_;
+        width = width_;
+        height = height_;
         window = std::unique_ptr<SDL_Window, SDL_Deleter>(SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_HIDDEN));
     }
 

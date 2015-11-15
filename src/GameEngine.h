@@ -13,14 +13,21 @@ namespace GameEngine
     class Engine
     {
     public:
-        Engine(GameWindow *window, Game::Game* game);
+        Engine(GameWindow *window, Game::Game* game, double_t fpsCap);
         ~Engine();
         void start();
+        void pause(bool unpause = false);
         void stop();
-        bool doLoop();
     private:
+        const double_t FrameTime;
+        bool isRunning;
+        bool isPaused;
+        double_t fpsCap;
         std::unique_ptr<GameWindow> window;
         std::unique_ptr<Game::Game> game;
+        void run();
+        void processEvents();
+
     };
 }
 
