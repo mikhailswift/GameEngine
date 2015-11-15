@@ -12,9 +12,10 @@ int main(int argc, char **argv)
 {
     try
     {
-        std::unique_ptr<GameEngine::GameWindow> window = std::unique_ptr<GameEngine::GameWindow>(new GameEngine::SDLGameWindow("Test", SCREEN_WIDTH, SCREEN_HEIGHT));
-        std::unique_ptr<Game::Game> game = std::unique_ptr<Game::Game>(new Game::Game());
-        std::unique_ptr<GameEngine::Engine> engine = std::unique_ptr<GameEngine::Engine>(new GameEngine::Engine(window.get(), game.get()));
+        std::unique_ptr<GameEngine::Engine> engine = std::unique_ptr<GameEngine::Engine>(
+                new GameEngine::Engine(
+                        new GameEngine::SDLGameWindow("Test", SCREEN_WIDTH, SCREEN_HEIGHT),
+                        new Game::Game()));
         engine->start();
         return EXIT_SUCCESS;
     }

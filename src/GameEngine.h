@@ -19,8 +19,8 @@ namespace GameEngine
         void stop();
         bool doLoop();
     private:
-        GameWindow *window;
-        Game::Game *game;
+        std::unique_ptr<GameWindow> window;
+        std::unique_ptr<Game::Game> game;
     };
 }
 

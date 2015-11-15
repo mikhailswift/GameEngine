@@ -7,26 +7,26 @@
 
 #include <memory>
 #include <SDL2/SDL.h>
+#include <iostream>
 #include "Game.h"
 
 namespace GameEngine
 {
     class GameWindow
     {
-    protected:
-        int width, height, x, y;
-        char *title;
     public:
         virtual ~GameWindow();
         int getHeight();
         int getWidth();
         int getX();
         int getY();
-        char* getTitle();
-        // "rendering the game" may not make the most sense, but it's just a prototype for the moment
-        virtual void render(Game::Game *game)=0;
+        std::string getTitle();
         virtual void start() = 0;
         virtual void stop() = 0;
+        virtual void render(Game::Game *game) = 0;
+    protected:
+        int width, height, x, y;
+        std::string title;
     };
 
     // SDL Specifics
@@ -38,7 +38,7 @@ namespace GameEngine
     class SDLGameWindow : public GameWindow
     {
     public:
-        SDLGameWindow(char* title, int width, int height);
+        SDLGameWindow(std::string title, int width, int height);
         ~SDLGameWindow();
         void render(Game::Game *game);
         void start();

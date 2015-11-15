@@ -8,18 +8,20 @@ namespace GameEngine
 {
     Engine::Engine(GameWindow *w, Game::Game *g)
     {
-        window = w;
-        game = g;
+        window = std::unique_ptr<GameWindow>(w);
+        game = std::unique_ptr<Game::Game>(g);
     }
 
     Engine::~Engine()
     {
+        game.reset();
+        window.reset();
         SDL_Quit();
     }
 
     void Engine::start()
     {
-        window->start();
+        window.get()->start();
         while (true)
         {
             if (!doLoop())
@@ -31,7 +33,7 @@ namespace GameEngine
 
     void Engine::stop()
     {
-        window->stop();
+        window.get()->stop();
     }
 
     bool Engine::doLoop()
@@ -43,7 +45,7 @@ namespace GameEngine
                 return false;
         }
 
-        window->render(game);
+        window->render(game.get());
         SDL_Delay(2);
         return true;
     }
