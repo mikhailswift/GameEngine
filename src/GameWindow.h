@@ -8,7 +8,6 @@
 #include <memory>
 #include <SDL2/SDL.h>
 #include <iostream>
-#include <mach/i386/boolean.h>
 #include "Game.h"
 
 namespace GameEngine
