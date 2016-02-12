@@ -7,10 +7,11 @@
 
 namespace GameEngine
 {
-    Engine::Engine(GameWindow *window_, Game::Game *game_, uint16_t fpsCap_) : FrameTime(1.0/(double_t)fpsCap_)
+    Engine::Engine(GameWindow *window_, Game::Game *game_, Input::Input* input_, uint16_t fpsCap_) : FrameTime(1.0/(double_t)fpsCap_)
     {
         window = std::unique_ptr<GameWindow>(window_);
         game = std::unique_ptr<Game::Game>(game_);
+        input = std::unique_ptr<Input::Input>(input_);
         fpsCap = fpsCap_;
         isPaused = false;
         isRunning = false;
@@ -70,8 +71,6 @@ namespace GameEngine
                     continue;
 
                 // update game
-
-                // if
                 if (fpsTimer >= GameEngine::SECOND)
                 {
                     std::cout << fps << std::endl;
@@ -91,12 +90,15 @@ namespace GameEngine
         }
     }
 
+    //todo: this is creating a hard dependency on SDL.  this should be broken out
     void Engine::processEvents()
     {
         SDL_Event event;
         SDL_PollEvent(&event);
         switch (event.type)
         {
+            case SDL_KEYUP:
+            case SDL_KEYDOWN:
             case SDL_QUIT:
                 stop();
                 break;

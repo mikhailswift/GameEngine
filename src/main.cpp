@@ -13,10 +13,16 @@ int32_t main(int argc, char **argv)
 {
     try
     {
-        std::unique_ptr<GameEngine::Engine> engine = std::unique_ptr<GameEngine::Engine>(
+        // todo: dependency injection?
+        auto window = std::unique_ptr<GameEngine::GameWindow>(
+                new GameEngine::SDLGameWindow("Test", SCREEN_WIDTH, SCREEN_HEIGHT));
+        auto game = std::unique_ptr<Game::Game>(new Game::Game());
+        auto input = std::unique_ptr<GameEngine::Input::SDLInput>(new GameEngine::Input::SDLInput());
+        auto engine = std::unique_ptr<GameEngine::Engine>(
                 new GameEngine::Engine(
-                        new GameEngine::SDLGameWindow("Test", SCREEN_WIDTH, SCREEN_HEIGHT),
-                        new Game::Game(),
+                        window.get(),
+                        game.get(),
+                        input.get(),
                         FRAME_CAP));
         engine->start();
         return EXIT_SUCCESS;

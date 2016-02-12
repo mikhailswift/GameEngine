@@ -7,13 +7,14 @@
 
 #include "GameWindow.h"
 #include "Game.h"
+#include "Input/Input.h"
 
 namespace GameEngine
 {
     class Engine
     {
     public:
-        Engine(GameWindow *window, Game::Game* game, uint16_t fpsCap);
+        Engine(GameWindow* window, Game::Game* game, Input::Input* input, uint16_t fpsCap);
         ~Engine();
         void start();
         void pause(bool unpause = false);
@@ -25,9 +26,9 @@ namespace GameEngine
         double_t fpsCap;
         std::unique_ptr<GameWindow> window;
         std::unique_ptr<Game::Game> game;
+        std::unique_ptr<Input::Input> input;
         void run();
         void processEvents();
-
     };
 }
 
